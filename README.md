@@ -29,6 +29,8 @@ The stats for megahashes per second are based off of pure-brute force rather tha
 
 All types of cracking take significantly longer when rules are used, as it dramatically increases the number of passwords in the dictionary. As an example, Kerberos cracking without any rules applied takes roughly 20 minutes. With rules enabled, it takes around 3 days. 
 
+* The new P4 class instances with A100 NVIDIA GPUs look very promising too, but until I can actually open a request to create these types of machines, they won't be part of this tool.
+
 ## Usage
 
 ```
