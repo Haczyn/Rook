@@ -69,7 +69,7 @@ resource "aws_instance" "rook-cracking" {
     inline = [
     "sudo apt update",
     "sudo DEBIAN_FRONTEND=noninteractive apt upgrade -y -o Dpkg::Options::=\"--force-confdef\" -o Dpkg::Options::=\"--force-confold\"",
-    "sudo DEBIAN_FRONTEND=noninteractive apt install -y -o Dpkg::Options::=\"--force-confdef\" -o Dpkg::Options::=\"--force-confold\" build-essential linux-headers-4.15.0-1040-aws gcc screen linux-image-extra-virtual git make",
+    "sudo DEBIAN_FRONTEND=noninteractive apt install -y -o Dpkg::Options::=\"--force-confdef\" -o Dpkg::Options::=\"--force-confold\" build-essential linux-headers-aws-lts-20.04 gcc screen linux-image-extra-virtual git make nvidia-driver-495 nvidia-opencl-dev",
     "sudo apt update && sudo apt upgrade -y && sudo apt install build-essential -yq",
     "sudo cp /tmp/blacklist-nouveau.conf /etc/modprobe.d/.",
     "sudo cp /tmp/nouveau-kms.conf /etc/modprobe.d/.",
@@ -86,15 +86,16 @@ resource "aws_instance" "rook-cracking" {
   provisioner "remote-exec" {
     # new remote exec to connect back after restart
     inline = [
-    "sudo wget -P /opt/ ${var.nvidia}",
     "sudo wget -P /opt/ ${var.hashcat}",
-    "sudo /bin/bash /opt/NVIDIA-Linux-x86_64-410.104.run --ui=none --no-questions --silent -X",
     "sudo mkdir /opt/hashcat/",
-    "sudo tar -xvf /opt/hashcat-5.1.0.tar.gz -C /opt/",
+    "sudo tar -xvf /opt/hashcat-6.2.5.tar.gz -C /opt/",
     "cd /opt/hashcat-5.1.0 && sudo make",
     "sudo mkdir /words/",
     "sudo mount /dev/xvdb /words/",
+    "sudo chown -R ubuntu:ubuntu /words/",
+    "sudo chown -R ubuntu:ubuntu /opt/hashcat-6.2.5/",
     "${local.hashcmd}",
+    "sudo shutdown -P +600",
     "sleep 1",
     ]
   }
