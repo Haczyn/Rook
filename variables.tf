@@ -7,11 +7,11 @@ variable "nvidia" {
 }
 
 variable "hashcat" {
-  default	= "https://hashcat.net/files/hashcat-5.1.0.tar.gz"
+  default	= "https://hashcat.net/files/hashcat-6.2.5.tar.gz"
 }
 
 variable "ami" {
-  default	= "ami-0ee246e709782b1be"
+  default	= "ami-0015a39e4b7c0966f"
 }
 
 variable "itype" {
