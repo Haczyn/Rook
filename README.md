@@ -8,10 +8,31 @@ Ideas for the automation and usage of AWS for password cracking came from: [1](h
 
 
 ## Index
+- [Prerequisites](#Prerequisites)
 - [Statistics](#statistics)
 - [Usage](#usage)
 - [Future](#future)
+## Prerequisites
+Before you start using Rook, ensure your environment is set up correctly. Here are the steps you need to follow:
 
+Setting up the Environment
+Python Packages: Rook requires Python 3.x. Make sure you have it installed on your system. Additionally, you need to install a few Python packages:
+
+```
+pip install boto3 pymongo
+```
+These packages are essential for AWS communication (boto3) and handling BSON data (pymongo).
+
+AWS CLI: Rook utilizes AWS services, and thus, configuring AWS CLI is crucial. Install AWS CLI according to the official guide, and configure it with your credentials:
+
+```
+aws configure
+```
+This step will prompt you to enter your AWS Access Key ID, Secret Access Key, region, and output format, which are necessary for Rook to interact with AWS services.
+
+Terraform: Since Rook is a wrapper around Terraform, ensure Terraform is installed and accessible in your PATH. Download and install Terraform from the official website.
+
+After completing these steps, your environment should be ready for running Rook.
 ## Statistics
 Rook can create AWS instances and have Hashcat running against your hashes in 3 minutes 50 seconds.
 MegaHash/Second statistics for hashtypes we encounter on internal tests - for a single NVIDIA V100 GPU. p3.8xlarge and p3.16xlarge have 4 and 8 of these GPUs respectively:
