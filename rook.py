@@ -47,7 +47,7 @@ def presetup():
         sys.exit(1)
     if os.path.exists(home + '/.aws/credentials') is False:
         print("[!] No AWS credentials present. Running aws configure now. Region should be eu-west-2")
-        subprocess.call("aws", "configure")
+        subprocess.call(["aws", "configure"])
         print("[!] You can now run Rook!")
         sys.exit(0)
     if os.path.exists('./.terraform/') is False:
